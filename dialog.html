@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dialog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        dialog {
+            border-radius: 0.5rem;
+            border: 1px solid var(--bs-border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            max-width: 480px;
+            width: 100%;
+        }
+
+        /* Modal backdrop — only applies to showModal() dialogs */
+        dialog::backdrop {
+            backdrop-filter: blur(4px);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Non-modal dialogs have no backdrop, but we can still position them */
+        #non-modal-dialog {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            margin: 0;
+        }
+
+        #return-value-output {
+            font-family: monospace;
+            background: var(--bs-secondary-bg);
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            min-height: 2.25rem;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-3" style="view-transition-name: transitiondemo">
+        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+          <a href="index.html" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">Web API's Demos</span>
+          </a>
+        </div>
+        <h1 class="page-header">Dialog Demo</h1>
+        <p>The <code>&lt;dialog&gt;</code> HTML element represents a modal or non-modal dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.</p>
+        <p>For more information visit the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog">Dialog Element</a> page on MDN.</p>
+
+        <!-- =====================================================
+             DEMO 1: Invoker Commands API (declarative, no JS)
+             ===================================================== -->
+        <h2 class="h4 mt-5">1. Invoker Commands API <span class="badge bg-warning text-dark fs-6">New</span></h2>
+        <p>The <strong>Invoker Commands API</strong> lets you open and close a dialog entirely in HTML — no JavaScript required — using the <code>command</code> and <code>commandfor</code> attributes.</p>
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            <strong>Browser support:</strong> The Invoker Commands API is very new. Check <a href="https://caniuse.com/invoker-commands" class="alert-link">caniuse.com</a> before using in production.
+        </div>
+
+        <div class="row my-3">
+            <div class="col-md-6">
+                <button class="btn btn-primary" command="show-modal" commandfor="invoker-dialog">
+                    Open dialog (declarative)
+                </button>
+
+                <dialog id="invoker-dialog">
+                    <h3 class="h5">Invoker Commands Dialog</h3>
+                    <p>This dialog was opened using the <code>command="show-modal"</code> attribute — no JavaScript needed.</p>
+                    <p>Pressing <kbd>Escape</kbd> will also close this dialog (native browser behaviour).</p>
+                    <button class="btn btn-secondary" commandfor="invoker-dialog" command="close">Close</button>
+                </dialog>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             DEMO 2: JavaScript API — showModal()
+             ===================================================== -->
+        <h2 class="h4 mt-5">2. JavaScript API — <code>showModal()</code></h2>
+        <p><code>dialog.showModal()</code> opens the dialog as a <strong>modal</strong>: it receives focus, traps keyboard navigation inside it, renders a <code>::backdrop</code>, and can be dismissed with <kbd>Escape</kbd>.</p>
+
+        <div class="row my-3">
+            <div class="col-md-6">
+                <button class="btn btn-primary" id="open-js-modal-btn">Open modal (JavaScript)</button>
+
+                <dialog id="js-modal-dialog">
+                    <h3 class="h5">JavaScript Modal Dialog</h3>
+                    <p>Opened with <code>dialog.showModal()</code>. Notice the blurred backdrop behind it.</p>
+                    <p>Focus is <strong>trapped</strong> inside this dialog — try pressing <kbd>Tab</kbd>.</p>
+                    <div class="d-flex gap-2 justify-content-end mt-3">
+                        <button class="btn btn-secondary" id="close-js-modal-btn">Close</button>
+                    </div>
+                </dialog>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             DEMO 3: form method="dialog" + returnValue
+             ===================================================== -->
+        <h2 class="h4 mt-5">3. Return Values with <code>&lt;form method="dialog"&gt;</code></h2>
+        <p>A <code>&lt;form&gt;</code> inside a dialog with <code>method="dialog"</code> will close the dialog when submitted. The submit button's <code>value</code> is captured as <code>dialog.returnValue</code>, making it easy to know which action the user chose.</p>
+
+        <div class="row my-3">
+            <div class="col-md-6">
+                <button class="btn btn-primary" id="open-confirm-dialog-btn">Open confirmation dialog</button>
+
+                <dialog id="confirm-dialog">
+                    <h3 class="h5">Confirm Action</h3>
+                    <p>Are you sure you want to proceed? This action cannot be undone.</p>
+                    <form method="dialog" class="d-flex gap-2 justify-content-end mt-3">
+                        <button class="btn btn-secondary" value="cancel">Cancel</button>
+                        <button class="btn btn-danger" value="confirm">Yes, confirm</button>
+                    </form>
+                </dialog>
+
+                <div class="mt-3">
+                    <label class="form-label text-muted small">dialog.returnValue after close:</label>
+                    <div id="return-value-output" class="text-muted">—</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             DEMO 4: Non-modal dialog — show()
+             ===================================================== -->
+        <h2 class="h4 mt-5">4. Non-modal Dialog — <code>show()</code></h2>
+        <p><code>dialog.show()</code> opens the dialog as <strong>non-modal</strong>: there is no backdrop, focus is <em>not</em> trapped, and the rest of the page remains fully interactive. It behaves more like a floating panel or toast.</p>
+
+        <div class="row my-3">
+            <div class="col-md-6">
+                <button class="btn btn-primary" id="open-non-modal-btn">Open non-modal dialog</button>
+            </div>
+        </div>
+
+        <!-- Positioned in the bottom-right corner via CSS -->
+        <dialog id="non-modal-dialog">
+            <h3 class="h5">Non-modal Dialog</h3>
+            <p>Opened with <code>dialog.show()</code>. The page behind is still interactive — try scrolling or clicking.</p>
+            <button class="btn btn-secondary btn-sm" id="close-non-modal-btn">Dismiss</button>
+        </dialog>
+
+        <div class="my-5"><a href="index.html" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back Home</a></div>
+    </div>
+
+    <script>
+        // ── Demo 2: showModal() via JavaScript ──────────────────────────────
+        const jsModalDialog = document.getElementById('js-modal-dialog');
+
+        document.getElementById('open-js-modal-btn').addEventListener('click', () => {
+            jsModalDialog.showModal();
+        });
+
+        document.getElementById('close-js-modal-btn').addEventListener('click', () => {
+            jsModalDialog.close();
+        });
+
+        // ── Demo 3: form method="dialog" + returnValue ───────────────────────
+        const confirmDialog = document.getElementById('confirm-dialog');
+        const returnValueOutput = document.getElementById('return-value-output');
+
+        document.getElementById('open-confirm-dialog-btn').addEventListener('click', () => {
+            confirmDialog.showModal();
+        });
+
+        // The 'close' event fires whenever the dialog is closed by any means.
+        // dialog.returnValue holds the value of the button that submitted the form.
+        confirmDialog.addEventListener('close', () => {
+            const value = confirmDialog.returnValue;
+            returnValueOutput.textContent = value ? `"${value}"` : '(empty — closed with Escape)';
+            returnValueOutput.classList.toggle('text-muted', !value);
+        });
+
+        // ── Demo 4: Non-modal show() ─────────────────────────────────────────
+        const nonModalDialog = document.getElementById('non-modal-dialog');
+
+        document.getElementById('open-non-modal-btn').addEventListener('click', () => {
+            nonModalDialog.show();
+        });
+
+        document.getElementById('close-non-modal-btn').addEventListener('click', () => {
+            nonModalDialog.close();
+        });
+    </script>
+</body>
+</html>
