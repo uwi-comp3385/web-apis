@@ -9,10 +9,15 @@
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <div class="container" style="view-transition-name: transitiondemo">
+    <div class="container py-3" style="view-transition-name: transitiondemo">
+      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="index.html" class="d-flex align-items-center text-dark text-decoration-none">
+          <span class="fs-4">Web API's Demos</span>
+        </a>
+      </div>
       <h1 class="page-header">HTML5 Audio/Video Demo</h1>
 
-      <h2><span class="glyphicon glyphicon-film"></span> Video</h2>
+      <h2 class="mt-5"><span class="bi bi-film"></span> Video</h2>
       <!-- try adding autoplay, loop, mute attributes and see what happens -->
       <video id="myVid" controls poster="images/sintel.jpg" width="480px">
           <source src="assets/sintel_trailer-480p.mp4" type="video/mp4">
@@ -30,7 +35,7 @@
         <button id="speedUpBtn" type="button" class="btn btn-dark">Speed <span class="bi bi-plus"></span></button>
       </div>
 
-      <h2><span class="glyphicon glyphicon-music"></span> Audio</h2>
+      <h2 class="mt-5"><span class="bi bi-music-note"></span> Audio</h2>
       <audio controls src="assets/Blinded feat. Emma Carn.mp3"></audio>
 
       <div class="my-5"><a href="index.html" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back Home</a></div>

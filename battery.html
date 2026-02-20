@@ -10,10 +10,17 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div class="container" style="view-transition-name: transitiondemo">
+  <div class="container py-3" style="view-transition-name: transitiondemo">
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="index.html" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4">Web API's Demos</span>
+      </a>
+    </div>
         <h1 class="page-header">Battery API Demo</h1>
         <p>The Battery Status API, more often referred to as the Battery API, provides information about the system's battery charge level and lets you be notified by events that are sent when the battery level or charging status change. This can be used to adjust your app's resource usage to reduce battery drain when the battery is low, or to save changes before the battery runs out in order to prevent data loss.</p>
         <p>For more information visit the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API">Battery Status API</a> page on MDN</p>
+        <div class="row">
+          <div class="col-md-6">
         <pre><code>
 navigator.getBattery().then((battery) => {
     console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
@@ -44,20 +51,23 @@ battery.addEventListener("dischargingtimechange", () => {
     // indicates the amount of time, in seconds, that remains until the battery is fully discharged, or Infinity if the battery is currently charging rather than discharging
 });
         </code></pre>
-
-        <div class="card">
-            <div class="card-header">
-                Battery Status
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">Battery Charging?: <span id="batteryStatus"></span></li>
-                    <li class="list-group-item">Battery Level: <span id="batteryLevel"></span></li>
-                    <li class="list-group-item">Battery Discharging Time: <span id="batteryDischargingTime"></span></li>
-                    <li class="list-group-item">Battery Charging Time: <span id="batteryChargingTime"></span></li>
-                </ul>
-            </div>
+      </div>
+        <div class="col-md-6">
+          <div class="card">
+              <div class="card-header">
+                  Battery Status
+              </div>
+              <div class="card-body">
+                  <ul class="list-group">
+                      <li class="list-group-item">Battery Charging?: <span id="batteryStatus"></span></li>
+                      <li class="list-group-item">Battery Level: <span id="batteryLevel"></span></li>
+                      <li class="list-group-item">Battery Discharging Time: <span id="batteryDischargingTime"></span></li>
+                      <li class="list-group-item">Battery Charging Time: <span id="batteryChargingTime"></span></li>
+                  </ul>
+              </div>
+          </div>
         </div>
+      </div>
 
         <div class="my-5"><a href="index.html" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back Home</a></div>
     </div>

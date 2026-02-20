@@ -23,30 +23,37 @@
     </style>
 </head>
 <body>
-    <div class="container" style="view-transition-name: transitiondemo">
+    <div class="container py-3" style="view-transition-name: transitiondemo">
+        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+          <a href="index.html" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">Web API's Demos</span>
+          </a>
+        </div>
         <h1 class="page-header">Popover API Demo</h1>
         <p>The Popover API provides developers with a standard, consistent, flexible mechanism for displaying popover content on top of other page content.</p>
         <p>For more information visit the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API">Popover API</a> page on MDN</p>
 
-        <div class="my-5">
-            <button class="btn btn-primary" popovertarget="mypopover">Toggle the popover</button>
-            <div id="mypopover" popover class="shadow-lg p-3 rounded">
-                <div>
-                    <h2>Popover heading</h2>
-                    <p>
-                        This here is some very important content that we want to draw your
-                        attention to before you light dismiss it. Read it all, do not delay!
-                    </p>
+        <div class="row my-5">
+            <div class="col-md-6">
+                <button class="btn btn-primary" popovertarget="mypopover">Toggle the popover</button>
+                <div id="mypopover" popover class="shadow-lg p-3 rounded">
+                    <div>
+                        <h2>Popover heading</h2>
+                        <p>
+                            This here is some very important content that we want to draw your
+                            attention to before you light dismiss it. Read it all, do not delay!
+                        </p>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-6">
+                <figure>
+                    <img src="./images/bogdan-pasca-mlpIG7ASJaY-unsplash.jpg" alt="Marina Bay Rd, Antigua and Barbuda" class="img-fluid">
+                    <figcaption class="mt-3">Photo by <a href="https://unsplash.com/@bogdipasca?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Bogdan Pasca</a> on <a href="https://unsplash.com/photos/floating-house-in-the-middle-of-sea-at-daytime-mlpIG7ASJaY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></figcaption>
+                </figure>
             </div>
         </div>
 
-        <div class="container">
-            <figure>
-                <img src="./images/bogdan-pasca-mlpIG7ASJaY-unsplash.jpg" alt="Marina Bay Rd, Antigua and Barbuda" class="img-fluid">
-                <figcaption class="mt-3">Photo by <a href="https://unsplash.com/@bogdipasca?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Bogdan Pasca</a> on <a href="https://unsplash.com/photos/floating-house-in-the-middle-of-sea-at-daytime-mlpIG7ASJaY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></figcaption>
-            </figure>
-        </div>
 
         <div class="my-5"><a href="index.html" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back Home</a></div>
 
